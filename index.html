@@ -2,274 +2,552 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Siddharth Madhavan</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
-body{
-    font-family: "Libre Baskerville", serif;
-    font-size:17px;
-    max-width:900px;
-    margin:40px auto;
-    line-height:1.7;
-    color:#111;
-}
+    :root{
+        --bg:#f4f1ea;
+        --surface:#fbfaf7;
+        --surface-alt:#f1ede5;
+        --text:#151515;
+        --muted:#5f5a52;
+        --line:#d8d1c4;
+        --accent:#173a63;
+    }
 
-h1,h2{
-    border-bottom:1px solid #ddd;
-    padding-bottom:6px;
-}
+    *{
+        box-sizing:border-box;
+    }
 
-nav{
-    margin-bottom:30px;
-}
+    html{
+        scroll-behavior:smooth;
+    }
 
-nav a{
-    margin-right:18px;
-    color:#0645ad;
-    text-decoration:none;
-    font-weight:700;
-}
+    body{
+        margin:0;
+        background:var(--bg);
+        color:var(--text);
+        font-family:"Inter", sans-serif;
+        font-size:16px;
+        line-height:1.7;
+    }
 
-nav a:hover{
-    text-decoration:underline;
-}
+    .page{
+        max-width:980px;
+        margin:0 auto;
+        padding:36px 24px 72px;
+    }
 
-.section{
-    margin-top:40px;
-}
+    .eyebrow{
+        margin:0 0 14px;
+        color:var(--muted);
+        font-size:12px;
+        font-weight:600;
+        letter-spacing:0.12em;
+        text-transform:uppercase;
+    }
 
-.gray{
-    color:#555;
-}
+    .hero{
+        padding:0 0 28px;
+        border-bottom:1px solid var(--line);
+    }
 
-a{
-    color:#0645ad;
-    text-decoration:none;
-}
+    .hero-top{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:16px;
+    }
 
-a:hover{
-    text-decoration:underline;
-}
+    .hero-actions{
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+    }
 
-ul{
-    padding-left:22px;
-}
+    .icon-button{
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        width:42px;
+        height:42px;
+        border:1px solid var(--line);
+        border-radius:999px;
+        background:var(--surface);
+        color:#000;
+        transition:transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
 
-h3{
-    margin-top:25px;
-}
+    .icon-button:hover{
+        transform:translateY(-1px);
+        border-color:var(--accent);
+        background:var(--surface-alt);
+    }
 
-h4{
-    margin-top:18px;
-}
+    .icon-button svg{
+        width:19px;
+        height:19px;
+        fill:currentColor;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4{
+        font-family:"Libre Baskerville", serif;
+        font-weight:700;
+        color:var(--text);
+    }
+
+    h1{
+        margin:0;
+        font-size:44px;
+        line-height:1.15;
+        letter-spacing:-0.02em;
+    }
+
+    h2{
+        margin:0 0 18px;
+        padding-bottom:10px;
+        font-size:26px;
+        border-bottom:1px solid var(--line);
+    }
+
+    h2.no-divider{
+        padding-bottom:0;
+        border-bottom:none;
+    }
+
+    h3{
+        margin:0 0 12px;
+        font-size:20px;
+    }
+
+    h4{
+        margin:22px 0 10px;
+        font-size:16px;
+    }
+
+    p{
+        margin:0 0 14px;
+    }
+
+    .intro{
+        max-width:760px;
+        margin:18px 0 0;
+        font-size:18px;
+        color:var(--text);
+    }
+
+    .muted,
+    .gray{
+        color:var(--muted);
+    }
+
+    .meta-row,
+    .quick-links{
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px 14px;
+        margin-top:22px;
+    }
+
+    .meta-item{
+        padding:4px 0;
+        border-bottom:1px solid var(--line);
+        color:var(--muted);
+        font-size:14px;
+    }
+
+    .quick-links a{
+        display:inline-block;
+        padding:6px 0;
+        border-bottom:1px solid transparent;
+        font-size:14px;
+        font-weight:600;
+    }
+
+    .quick-links a:hover,
+    nav a:hover,
+    a:hover{
+        border-color:var(--accent);
+    }
+
+    nav{
+        position:sticky;
+        top:0;
+        z-index:10;
+        display:flex;
+        flex-wrap:wrap;
+        gap:14px 22px;
+        margin:18px 0 0;
+        padding:14px 0 0;
+        background:var(--bg);
+    }
+
+    nav a{
+        color:var(--muted);
+        text-decoration:none;
+        font-size:14px;
+        font-weight:600;
+        border-bottom:1px solid transparent;
+    }
+
+    a{
+        color:var(--accent);
+        text-decoration:none;
+    }
+
+    .section{
+        margin-top:54px;
+    }
+
+    .simple-list,
+    .course-list{
+        margin:0;
+        padding-left:20px;
+    }
+
+    .simple-list li,
+    .course-list li{
+        margin-bottom:10px;
+    }
+
+    .split{
+        display:grid;
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:22px;
+    }
+
+    .panel{
+        padding:20px 0 0;
+        border-top:1px solid var(--line);
+    }
+
+    .project-list{
+        display:grid;
+        gap:26px;
+    }
+
+    .project-item{
+        padding:0 0 22px;
+        border-bottom:1px solid var(--line);
+    }
+
+    .project-item:last-child{
+        padding-bottom:0;
+    }
+
+    .project-title{
+        display:flex;
+        flex-wrap:wrap;
+        align-items:baseline;
+        gap:8px 12px;
+        margin-bottom:8px;
+    }
+
+    .project-title b{
+        font-family:"Libre Baskerville", serif;
+        font-size:20px;
+        color:var(--text);
+    }
+
+    .project-status{
+        color:var(--muted);
+        font-size:13px;
+        font-weight:600;
+        letter-spacing:0.02em;
+        text-transform:uppercase;
+    }
+
+    .project-links{
+        display:flex;
+        flex-wrap:wrap;
+        gap:14px;
+        margin-top:10px;
+        font-size:14px;
+    }
+
+    .achievement-grid{
+        display:grid;
+        grid-template-columns:repeat(2, minmax(0, 1fr));
+        gap:18px;
+    }
+
+    .achievement{
+        padding:16px 0;
+        border-top:1px solid var(--line);
+    }
+
+    .achievement strong{
+        display:block;
+        margin-bottom:4px;
+        font-size:18px;
+    }
+
+    .course-group{
+        margin-top:24px;
+        padding-top:18px;
+        border-top:1px solid var(--line);
+    }
+
+    .contact-links a{
+        display:inline-block;
+        margin-right:22px;
+        margin-bottom:10px;
+        font-weight:600;
+    }
+
+    @media (max-width:780px){
+        .page{
+            padding:28px 18px 56px;
+        }
+
+        .hero-top{
+            align-items:flex-start;
+            flex-direction:column;
+        }
+
+        h1{
+            font-size:34px;
+        }
+
+        .intro{
+            font-size:17px;
+        }
+
+        .split,
+        .achievement-grid{
+            grid-template-columns:1fr;
+        }
+    }
 
 </style>
 </head>
 
 <body>
+<div class="page">
 
+<header class="hero">
+<div class="hero-top">
 <h1>Siddharth Madhavan</h1>
 
+<div class="hero-actions">
+<a class="icon-button" href="https://github.com/SiddharthMadhavan" aria-label="GitHub" target="_blank" rel="noreferrer">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.32-1.28-1.67-1.28-1.67-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.2 1.77 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.27-5.23-5.68 0-1.26.45-2.3 1.19-3.11-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.19 1.19a11.1 11.1 0 0 1 5.8 0c2.21-1.5 3.18-1.19 3.18-1.19.64 1.59.24 2.77.12 3.06.74.81 1.19 1.85 1.19 3.11 0 4.42-2.68 5.39-5.24 5.67.41.35.78 1.05.78 2.12 0 1.53-.01 2.77-.01 3.15 0 .31.21.68.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
+</svg>
+</a>
+<a class="icon-button" href="https://www.linkedin.com/in/siddharth-madhavan-900544212/" aria-label="LinkedIn" target="_blank" rel="noreferrer">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<path d="M4.98 3.5A2.48 2.48 0 1 0 5 8.46 2.48 2.48 0 0 0 4.98 3.5ZM3 9h4v12H3Zm6.5 0h3.83v1.64h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.66 4.8 6.12V21h-4v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.95V21h-4Z"/>
+</svg>
+</a>
+</div>
+</div>
+
+<p class="intro">
+Computer Science student at <b>NIT Calicut</b> and Data Science student at <b>IIT Madras (Online)</b>.
+<span class="gray">Interested in artificial intelligence, algorithms, computational systems, and applied data science.</span>
+</p>
+
+<div class="meta-row">
+<span class="meta-item">CSE @ NIT Calicut</span>
+<span class="meta-item">Data Science @ IIT Madras</span>
+</div>
+
 <nav>
+<a href="#current">Current</a>
 <a href="#projects">Projects</a>
 <a href="#achievements">Achievements</a>
 <a href="#education">Education</a>
 <a href="#coursework">Coursework</a>
 <a href="#contact">Contact</a>
 </nav>
+</header>
 
-<p>
-Computer Science student at <b>NIT Calicut</b> and Data Science student at <b>IIT Madras (Online)</b>.
-<span class="gray">Interested in artificial intelligence, algorithms, computational systems, and applied data science.</span>
-</p>
-
-<div class="section">
+<section class="section" id="current">
 <h2>Currently Working On</h2>
 
-<ul>
-<li><a href="https://byte2beat.devpost.com/">Byte2Beat Hackathon (Planning)</a></li>
-<li><a href="https://fossunited.org/fosshack/2026">FOSS Hack 2026 (Planning)</a></li>
+<ul class="simple-list">
+<li><a href="https://byte2beat.devpost.com/">Byte2Beat Hackathon</a> <span class="gray">— planning and early exploration</span></li>
+<li><a href="https://fossunited.org/fosshack/2026">FOSS Hack 2026</a> <span class="gray">— planning</span></li>
 </ul>
+</section>
 
-</div>
-
-
-<div class="section" id="projects">
+<section class="section" id="projects">
 <h2>Projects</h2>
 
-<ul>
-
-<li>
-<a href="https://github.com/Jay-Jay-Tee/inbox-zero"><b>InboxZero AI</b></a><br>
-<span class="gray">
-Chrome extension designed to assist with intelligent email management and inbox organization.
-Explores automated categorization and workflow assistance for handling large volumes of email.
-</span><br>
-<span class="gray">AZ Chrome Extension Hackathon — Awaiting Results</span>
-</li>
-
-<br><br>
-
-<li>
-<a href="https://github.com/Jay-Jay-Tee/genescope"><b>GeneScope</b></a><br>
-<span class="gray">
-Computational tool for exploring biological data and extracting insights from gene-related datasets.
-Built during the ChangeMaker Hackathon to investigate the intersection of biology and data analysis.
-</span><br>
-<span class="gray">ChangeMaker Hackathon — Awaiting Results</span>
-</li>
-
-<br><br>
-
-<li>
-<a href="https://github.com/Jay-Jay-Tee/the-grid-x"><b>The Grid X</b></a><br>
-<span class="gray">
-An experimental framework that enables distributed execution of code across remote nodes through a modular grid-based architecture.
-</span><br>
-<span class="gray">Code INIT (NIT Calicut Hackathon) — 4th Place</span>
-</li>
-
-<br><br>
-
-<li>
-<a href="https://github.com/Jay-Jay-Tee/meditrack-ai"><b>MediTrack AI</b></a><br>
-<span class="gray">
-AI-assisted healthcare tracking concept focused on organizing and monitoring patient data.
-Developed during Convolve 4.0 and shortlisted for the second round.
-</span><br>
-</li>
-
-</ul>
-
+<div class="project-list">
+<article class="project-item">
+<div class="project-title">
+<a href="https://github.com/Jay-Jay-Tee/inbox-zero"><b>InboxZero AI</b></a>
+<span class="project-status">Awaiting Results</span>
 </div>
-
-
-<div class="section" id="achievements">
-<h2>Recent Achievements</h2>
-
-<ul>
-<li>4th Place — Code INIT Hackathon (NIT Calicut)</li>
-<li>1st Place — nitcCTF</li>
-</ul>
-
-</div>
-
-
-<div class="section" id="education">
-<h2>Education</h2>
-
-<p>
-<b>B.Tech Computer Science and Engineering</b><br>
-National Institute of Technology Calicut<br>
-<span class="gray">Started: August 2025 | Current CGPA: 8.5</span>
+<p class="gray">
+Chrome extension for intelligent email management and inbox organization, focused on automated categorization and workflow assistance for high-volume inboxes.
 </p>
+<p class="gray">AZ Chrome Extension Hackathon</p>
+<div class="project-links">
+<a href="https://github.com/Jay-Jay-Tee/inbox-zero">Repository</a>
+</div>
+</article>
 
-<p>
-<b>B.S. Data Science and Applications</b><br>
-Indian Institute of Technology Madras (Online)<br>
-<span class="gray">Started: May 2025 | Current CGPA: 8.3</span>
+<article class="project-item">
+<div class="project-title">
+<a href="https://github.com/Jay-Jay-Tee/genescope"><b>GeneScope</b></a>
+<span class="project-status">Awaiting Results</span>
+</div>
+<p class="gray">
+Computational tool for exploring biological data and extracting insights from gene-related datasets, built to examine the overlap between biology and data analysis.
 </p>
+<p class="gray">ChangeMaker Hackathon</p>
+<div class="project-links">
+<a href="https://github.com/Jay-Jay-Tee/genescope">Repository</a>
+</div>
+</article>
 
+<article class="project-item">
+<div class="project-title">
+<a href="https://github.com/Jay-Jay-Tee/the-grid-x"><b>The Grid X</b></a>
+<span class="project-status">4th Place</span>
+</div>
+<p class="gray">
+Experimental framework for distributed execution across remote nodes through a modular grid-based architecture.
+</p>
+<p class="gray">Code INIT · NIT Calicut Hackathon</p>
+<div class="project-links">
+<a href="https://github.com/Jay-Jay-Tee/the-grid-x">Repository</a>
+</div>
+</article>
+
+<article class="project-item">
+<div class="project-title">
+<a href="https://github.com/Jay-Jay-Tee/meditrack-ai"><b>MediTrack AI</b></a>
+<span class="project-status">Shortlisted</span>
+</div>
+<p class="gray">
+AI-assisted healthcare tracking concept focused on organizing and monitoring patient data, developed during Convolve 4.0 and shortlisted for the second round.
+</p>
+<div class="project-links">
+<a href="https://github.com/Jay-Jay-Tee/meditrack-ai">Repository</a>
+</div>
+</article>
+<br>
+</div>
+</section>
+
+<section class="section" id="achievements">
+<h2 class="no-divider">Recent Achievements</h2>
+
+<div class="achievement-grid">
+<div class="achievement">
+<strong>4th Place</strong>
+<span class="gray">Code INIT Hackathon · NIT Calicut</span>
 </div>
 
+<div class="achievement">
+<strong>1st Place</strong>
+<span class="gray">nitcCTF</span>
+</div>
+</div>
+</section>
 
-<div class="section" id="coursework">
+<section class="section" id="education">
+<h2 class="no-divider">Education</h2>
+
+<div class="split">
+<div class="panel">
+<h3>B.Tech Computer Science and Engineering</h3>
+<p>National Institute of Technology Calicut</p>
+<p class="gray">Started August 2025 · Current CGPA: 8.5</p>
+</div>
+
+<div class="panel">
+<h3>B.S. Data Science and Applications</h3>
+<p>Indian Institute of Technology Madras (Online)</p>
+<p class="gray">Started May 2025 · Current CGPA: 8.3</p>
+</div>
+</div>
+</section>
+
+<section class="section" id="coursework">
 <h2>Coursework</h2>
 
+<div class="split">
+<div>
 <h3>NIT Calicut</h3>
-
 <p class="gray">
 Official Curriculum:
-<a href="https://nitc.ac.in/imgserver/uploads/attachments/Ed__5564815e-2c2b-46ae-87c2-67101431d466_.pdf">
-NIT Calicut B.Tech CSE Course Structure
-</a>
+<a href="https://nitc.ac.in/imgserver/uploads/attachments/Ed__5564815e-2c2b-46ae-87c2-67101431d466_.pdf">NIT Calicut Course Structure</a>
 </p>
 
+<div class="course-group">
 <h4>Completed</h4>
-
-<ul>
+<ul class="course-list">
 <li>Mathematics I (MA1002E) — Multivariable Calculus, Vector Fields</li>
 <li>Introduction to Computing Science (CS1002E) — Algorithms, Flowcharts, Basic Logic Gates</li>
-<li>Discrete Structures I (CS1003E) — Sets & Relations, Induction & Recurrence, Graph Theory</li>
+<li>Discrete Structures I (CS1003E) — Sets and Relations, Induction and Recurrence, Graph Theory</li>
 <li>Programming Laboratory (CS1091E) — C Programming, Pointers, Arrays</li>
 </ul>
+</div>
 
+<div class="course-group">
 <h4>Current</h4>
-
-<ul>
+<ul class="course-list">
 <li>Mathematics II (MA1012E) — Sequences, Series, Linear ODEs, Core Linear Algebra</li>
 <li>Discrete Structures II (CS1013E) — Logic, Number Theory, Probability Theory</li>
 <li>Logic Design (CS1012E) — Number Systems, Gates, Fundamentals of Simple Digital Systems</li>
-<li>Program Design (CS1011E) — Design & Analysis of Searching/Sorting Algorithms, Basic Data Structures</li>
-<li>Program Design Laboratory (CS1092E) — Implementation of Data Structures & Algorithms in C</li>
+<li>Program Design (CS1011E) — Design and Analysis of Searching and Sorting Algorithms, Basic Data Structures</li>
+<li>Program Design Laboratory (CS1092E) — Implementation of Data Structures and Algorithms in C</li>
 <li>Physics of Materials (PH1001E) — Quantum Mechanics, Band Formation, Electrical Properties, Semiconductors</li>
 </ul>
-
-
-<h3>IIT Madras</h3>
-
-<h4>Completed</h4>
-
-<ul>
-
-<li>
-Statistics for Data Science I (BSMA1002)
-<span class="gray">— Statistical Methods, Probability Theory</span>
-<a href="https://study.iitm.ac.in/ds/course_pages/BSMA1002.html">[Course]</a>
-</li>
-
-<li>
-Mathematics for Data Science I (BSMA1001)
-<span class="gray">— Sets, Calculus, Graph Theory</span>
-<a href="https://study.iitm.ac.in/ds/course_pages/BSMA1001.html">[Course]</a>
-</li>
-
-<li>
-Mathematics for Data Science II (BSMA1003)
-<span class="gray">— Linear Algebra, Multivariable Calculus</span>
-<a href="https://study.iitm.ac.in/ds/course_pages/BSMA1003.html">[Course]</a>
-</li>
-
-<li>
-Computational Thinking (BSCS1001)
-<span class="gray">— Algorithms, Graph Theory</span>
-<a href="https://study.iitm.ac.in/ds/course_pages/BSCS1001.html">[Course]</a>
-</li>
-
-</ul>
-
-
-<h4>Current</h4>
-
-<ul>
-
-<li>
-Statistics for Data Science II (BSMA1004)
-<span class="gray">— Multiple Random Variables, Estimation, Hypothesis Testing</span>
-<a href="https://study.iitm.ac.in/ds/course_pages/BSMA1004.html">[Course]</a>
-</li>
-
-<li>
-Programming in Python (BSCS1002)
-<span class="gray">— Algorithms, Iteration, File Handling, Pandas, NumPy</span>
-<a href="https://study.iitm.ac.in/ds/course_pages/BSCS1002.html">[Course]</a>
-</li>
-
-</ul>
-
+</div>
 </div>
 
+<div>
+<h3>IIT Madras</h3>
+<p class="gray">
+Official Curriculum:
+<a href="https://study.iitm.ac.in/ds/academics.html">IIT Madras BS Degree Academics</a>
+</p>
 
-<div class="section" id="contact">
+<div class="course-group">
+<h4>Completed</h4>
+<ul class="course-list">
+<li>Statistics for Data Science I (BSMA1002) <span class="gray">— Statistical Methods, Probability Theory</span> <a href="https://study.iitm.ac.in/ds/course_pages/BSMA1002.html">Course</a></li>
+<li>Mathematics for Data Science I (BSMA1001) <span class="gray">— Sets, Calculus, Graph Theory</span> <a href="https://study.iitm.ac.in/ds/course_pages/BSMA1001.html">Course</a></li>
+<li>Mathematics for Data Science II (BSMA1003) <span class="gray">— Linear Algebra, Multivariable Calculus</span> <a href="https://study.iitm.ac.in/ds/course_pages/BSMA1003.html">Course</a></li>
+<li>Computational Thinking (BSCS1001) <span class="gray">— Algorithms, Graph Theory</span> <a href="https://study.iitm.ac.in/ds/course_pages/BSCS1001.html">Course</a></li>
+</ul>
+</div>
+
+<div class="course-group">
+<h4>Current</h4>
+<ul class="course-list">
+<li>Statistics for Data Science II (BSMA1004) <span class="gray">— Multiple Random Variables, Estimation, Hypothesis Testing</span> <a href="https://study.iitm.ac.in/ds/course_pages/BSMA1004.html">Course</a></li>
+<li>Programming in Python (BSCS1002) <span class="gray">— Algorithms, Iteration, File Handling, Pandas, NumPy</span> <a href="https://study.iitm.ac.in/ds/course_pages/BSCS1002.html">Course</a></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="contact">
 <h2>Contact</h2>
-
-<p>
-<a href="https://github.com/SiddharthMadhavan">GitHub</a><br>
+<p class="gray">Open to collaborations, projects, and hackathons.</p>
+<p class="contact-links">
+<a href="https://github.com/SiddharthMadhavan">GitHub</a>
 <a href="https://www.linkedin.com/in/siddharth-madhavan-900544212/">LinkedIn</a>
 </p>
+<p>Email: <a href="mailto:siddharth.madhavan2007@gmail.com">siddharth.madhavan2007@gmail.com</a></p>
+<p>Phone: +91 89256 00688</p>
+</section>
 
 </div>
 
