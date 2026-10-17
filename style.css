@@ -107,3 +107,34 @@
 @media(prefers-reduced-motion:reduce){.portrait-blink,.portrait-blink image{animation:none!important}.portrait-blink image{opacity:0}}
 @media(min-width:601px) and (max-width:700px){.menu{left:49%;width:48%}.identity{width:35%;padding-right:14px}.identity h1{font-size:24px}.identity p{font-size:8px}}
 @media(max-width:600px){.identity{padding:8px 14px 8px 10px}.identity h1{font-size:clamp(24px,7.4vw,29px);margin:8px 0}.identity p{font-size:7px;margin:8px 0}.identity .eyebrow{font-size:8px}}
+/* A single uninterrupted portrait move; no separate backdrop crossfade. */
+.face-intro,.intro-art{background:transparent}
+.intro-word,.intro-name{display:none}
+.intro-ready .face-intro{animation:none}
+.intro-ready .menu,.intro-ready .commands,.intro-ready .identity,.intro-ready .identity-footer,.intro-ready .vinyl-player{animation:continuous-menu-reveal 2.3s ease both}
+@keyframes continuous-menu-reveal{from{opacity:0}to{opacity:1}}
+@keyframes portrait-idle{0%,100%{transform:rotate(180deg) translate(0,0)}25%{transform:rotate(180.55deg) translate(3px,4px)}50%{transform:rotate(180deg) translate(5px,6px)}75%{transform:rotate(179.55deg) translate(2px,3px)}}
+.vinyl-player{position:absolute;right:3%;top:4%;z-index:7;display:flex;flex-direction:column;align-items:center;gap:8px}
+.vinyl-control{position:relative;width:100px;height:100px;padding:0;border:1px solid #78ecff;border-radius:50%;background:#061537;cursor:pointer;box-shadow:5px 6px 0 #001e683d}
+.vinyl-disc{position:absolute;inset:4px;border-radius:50%;background:repeating-radial-gradient(circle,#051331 0 2px,#173159 3px 4px,#03112c 5px 7px);display:grid;place-items:center;animation:vinyl-spin 5s linear infinite;animation-play-state:paused}
+.vinyl-disc::after{content:'';position:absolute;inset:0;border-radius:50%;background:conic-gradient(transparent 0 30deg,#ffffff1f 35deg 50deg,transparent 55deg 210deg,#ffffff14 215deg 245deg,transparent 250deg)}
+.vinyl-label{display:grid;place-content:center;width:39px;height:39px;border-radius:50%;background:#08dded;color:#00235c;font-size:7px;line-height:1.05;font-weight:900;letter-spacing:.02em}
+.is-playing .vinyl-disc{animation-play-state:running}
+.record-action{position:absolute;inset:0;border-radius:50%;display:flex;flex-direction:column;justify-content:center;align-items:center;background:#00134dc9;color:white;opacity:0;transition:opacity .15s}.record-action b{font-size:24px}.record-action small{font-size:8px;letter-spacing:.14em}
+.vinyl-control:hover .record-action,.vinyl-control:focus-visible .record-action{opacity:1}
+.vinyl-mute{min-height:26px;padding:5px 8px;font-size:8px}
+@keyframes vinyl-spin{to{transform:rotate(360deg)}}
+@media(hover:none){.record-action{opacity:1;background:#00134d65}}
+@media(max-width:600px){.vinyl-player{right:4%;top:4%;gap:5px}.vinyl-control{width:62px;height:62px}.vinyl-label{width:27px;height:27px;font-size:5px}.record-action b{font-size:18px}.record-action small{font-size:6px}.vinyl-mute{font-size:7px;padding:4px 6px;min-height:24px}}
+.intro-ready .vinyl-player .music-toggle{animation:none}
+.blink-layer{opacity:0;animation:portrait-blink 5.8s linear infinite}
+.intro-ready .blink-layer,.reduce-motion .blink-layer{animation:none;opacity:0}
+@media(prefers-reduced-motion:reduce){.blink-layer{animation:none!important;opacity:0}}
+.tie-sway{transform:rotate(55deg);transform-origin:0 0;animation:tie-float 4.8s ease-in-out infinite}
+@keyframes tie-float{0%,100%{transform:rotate(52deg)}50%{transform:rotate(61deg)}}
+.intro-ready .tie-sway{animation:none}
+.intro-ready .portrait-wrap{z-index:-1}
+.record-action b{font-size:0;width:22px;height:24px;display:grid;place-items:center;margin-bottom:5px}
+.record-action b::before{content:'';display:block;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;border-left:16px solid white;margin-left:3px}
+.is-playing .record-action b::before{width:15px;height:20px;border:0;border-left:5px solid white;border-right:5px solid white;margin-left:0}
+@media(max-width:600px){.record-action b{transform:scale(.72);margin-bottom:0}}

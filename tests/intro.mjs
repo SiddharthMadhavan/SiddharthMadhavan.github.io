@@ -13,7 +13,7 @@ async function setup(active=true){
 }
 assert((await setup(false)).intro.hidden);
 for(const action of ['pointerdown','keydown']){const u=await setup();u.handlers[action]();assert(u.intro.hidden);assert(!u.classes.has('intro-ready'));}
-let u=await setup();assert.equal(u.frames.at(-1).transform,'translate(0px, 0px) scale(1)');assert.equal(u.frames.at(-2).transform,u.frames.at(-1).transform);u.animation.onfinish();assert(u.intro.hidden);
+let u=await setup();assert.equal(u.frames.at(-1).transform,'translate(0px, 0px) scale(1)');assert.equal(u.frames.length,2);u.animation.onfinish();assert(u.intro.hidden);
 u=await setup();u.document.activeElement=u.skip;u.sh.click();assert(u.focused());
 for(const action of ['timeout','motion']){u=await setup();u[action]();assert(u.intro.hidden);}
 for(const action of ['hashchange','resize']){u=await setup();u.wh[action]();assert(u.intro.hidden);}

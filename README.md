@@ -39,7 +39,7 @@ Color Your Night starts after the first user interaction, subject to browser pla
 
 ## Face opening
 
-A three-second white-and-blue face close-up moves the same portrait element into its exact resting position in the menu. Any pointer or keyboard input skips it immediately; an explicit Skip Intro button is also available. Reduced-motion preferences and direct section links bypass it. The portrait is an original AI-generated likeness based on the owner’s supplied photo. `node tests/intro.mjs` covers bypass, skipping, focus recovery, animation completion, timeout fallback, and motion preference changes.
+A continuous 2.3-second face close-up moves the same portrait element into its exact resting position in the menu. Any pointer or keyboard input skips it immediately; an explicit Skip Intro button is also available. Reduced-motion preferences and direct section links bypass it. The portrait is an original AI-generated likeness based on the owner’s supplied photo. `node tests/intro.mjs` covers bypass, skipping, focus recovery, animation completion, timeout fallback, and motion preference changes.
 
 ## Project and menu update
 
@@ -47,4 +47,10 @@ Additional project summaries were checked against the owner’s public GitHub re
 
 ## Motion and interface sounds
 
-Owner-supplied P3 Hover, P3 Select, and P3 Menu Close WAV files provide interaction feedback after a trusted pointer or keyboard gesture. The existing mute control now silences music and interface effects together; effects do not overlap and playback rejection is handled. `node tests/effects.mjs` verifies this behavior. The supplied reference video informs restrained idle movement, short blinking, and rising bubbles; it is not embedded in the site. Reduced-motion preferences disable nonessential motion.
+Owner-supplied P3 Hover and P3 Select WAV files provide interaction feedback after a trusted pointer or keyboard gesture. Closing uses the select sound; the original close clip is no longer used. The existing mute control now silences music and interface effects together; effects do not overlap and playback rejection is handled. `node tests/effects.mjs` verifies this behavior. The supplied reference video informs restrained idle movement, short blinking, and rising bubbles; it is not embedded in the site. Reduced-motion preferences disable nonessential motion.
+
+## Vinyl and mixed audio
+
+The upper-right vinyl spins while music plays. Hover or focus reveals Play/Pause; touch users can tap it directly. Pausing music is distinct from muting all audio and is remembered across visits. Music and decoded interface effects mix through one Web Audio context, so interface playback does not pause the track. The main portrait has a repaired shoulder contour and a shared alpha mask merging outer hair into the background.
+
+A loose generated tie is anchored at the collar and sways with the floating portrait. The shared portrait group keeps the base image, clipped eye blink, tie, and hair mask aligned. Reduced-motion settings stop the record, tie, portrait drift, bubbles, and blink.
