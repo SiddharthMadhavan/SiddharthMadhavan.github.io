@@ -30,4 +30,4 @@ The portrait is generated from the owner's supplied photo, delivered as a compre
 
 ## Checks
 
-`node --check app.js` validates JavaScript syntax. No runtime dependencies or build pipeline are required. Review mobile layout and menu behavior before merging a design change.
+`node --check app.js` validates JavaScript syntax. `node tests/check.mjs` verifies local assets, all eight menu destinations, unique IDs, preservation of the original links, and accessibility hooks. No runtime dependencies or build pipeline are required. Review mobile layout and menu behavior before merging a design change.
