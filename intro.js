@@ -4,7 +4,7 @@
   const intro = document.querySelector('.face-intro');
   const skip = document.querySelector('#skip-intro');
   const portrait = document.querySelector('.portrait-wrap');
-  const image = portrait.querySelector('.portrait');
+  const image = portrait.querySelector('.portrait-source');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let timer, animation, finished = false;
   const finish = () => {
@@ -26,7 +26,7 @@
   window.addEventListener('resize', finish, {once:true});
   reduced.addEventListener('change', event => { if (event.matches) finish(); });
   const start = async () => {
-    try { await image.decode(); } catch { /* Keep the page usable if an image fails. */ }
+    try { if (!image.complete || !image.naturalWidth) await image.decode(); } catch { /* Keep the page usable if an image fails. */ }
     if (finished) return;
     const box = portrait.getBoundingClientRect();
     const fit = Math.min(box.width / image.naturalWidth, box.height / image.naturalHeight);
@@ -41,12 +41,10 @@
     const closeup = `translate(${dx}px, ${dy}px) scale(${scale})`;
     animation = portrait.animate([
       {transform:closeup, offset:0},
-      {transform:closeup, offset:.18},
-      {transform:'translate(0px, 0px) scale(1)', offset:.9},
       {transform:'translate(0px, 0px) scale(1)', offset:1}
-    ], {duration:3000, easing:'cubic-bezier(.22,.68,.15,1)', fill:'both'});
+    ], {duration:2300, easing:'cubic-bezier(.16,.62,.22,1)', fill:'both'});
     animation.onfinish = finish;
   };
   void start();
-  timer = setTimeout(finish, 3800);
+  timer = setTimeout(finish, 3000);
 })();
