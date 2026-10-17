@@ -1,4 +1,4 @@
-# Siddharth Madhavan — Portfolio Reload
+# Siddharth Madhavan: Portfolio Reload
 
 A dependency-free, responsive portfolio inspired by the visual language of the Persona 3 Reload pause menu and [deltea's browser recreation](https://github.com/deltea/p3r-pause-menu).
 
