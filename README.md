@@ -40,3 +40,7 @@ Color Your Night starts after the first user interaction, subject to browser pla
 ## Face opening
 
 A 2.8-second white-and-blue face close-up pulls back into the menu. Any pointer or keyboard input skips it immediately; an explicit Skip Intro button is also available. Reduced-motion preferences and direct section links bypass it. The portrait is an original AI-generated likeness based on the owner’s supplied photo. `node tests/intro.mjs` covers bypass, skipping, focus recovery, animation completion, timeout fallback, and motion preference changes.
+
+## Project and menu update
+
+Additional project summaries were checked against the owner’s public GitHub repositories in October 2026: VredeFort, Thermal Watch, CHIP-8 / LAN Pong, RepoSense, Web Log Analysis V4, and Restaurant Analytics Dashboard. Team and upstream-starter attribution is retained; prototype work is not presented as validated production performance. Both portfolio views contain the same twelve projects. The settled portrait retains the opening’s opaque white-and-blue treatment; pointer and keyboard selection use an original red/white angular slash, disabled motion effects respect reduced-motion settings. The approved intro asset and animation are unchanged.
