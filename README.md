@@ -25,6 +25,7 @@ The portrait is generated from the owner's supplied photo, delivered as a compre
 - `index.html`: semantic portfolio shell and content
 - `style.css`: responsive visual interface, animation, and accessibility preferences
 - `app.js`: menu selection, hash navigation, dialog behavior, motion settings
+- `intro.js`: skippable face-close-up opening
 - `classic.html`: text-first current portfolio
 - `assets/`: generated portrait and original favicon
 
@@ -35,3 +36,7 @@ The portrait is generated from the owner's supplied photo, delivered as a compre
 ## Music
 
 Color Your Night starts after the first user interaction, subject to browser playback rules. The persistent Play/Mute/Unmute button is available on both the menu and every detail panel. Muting pauses playback and is remembered locally. Blocked playback leaves a Play button; no autoplay rejection is unhandled. The MP3 uses preload=none so visitors who keep music muted do not download it automatically.
+
+## Face opening
+
+A 2.8-second white-and-blue face close-up pulls back into the menu. Any pointer or keyboard input skips it immediately; an explicit Skip Intro button is also available. Reduced-motion preferences and direct section links bypass it. The portrait is an original AI-generated likeness based on the owner’s supplied photo. `node tests/intro.mjs` covers bypass, skipping, focus recovery, animation completion, timeout fallback, and motion preference changes.
