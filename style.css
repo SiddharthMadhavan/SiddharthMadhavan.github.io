@@ -5,3 +5,16 @@
 @media(max-width:600px){.identity{padding:11px 18px 11px 12px}.menu{gap:11px}}
 .menu-item:nth-child(odd):not(.is-selected) .menu-label{-webkit-text-stroke:1px #32dff9;paint-order:stroke fill}
 @media(max-width:600px){.menu-item:nth-child(odd):not(.is-selected) .menu-label{-webkit-text-stroke:2px #76f7ff;text-shadow:2px 3px 0 #00164a}}
+/* Long section labels must fit inside the phone viewport, not merely hide overflow. */
+@media(max-width:600px){
+ .stage{min-height:620px}
+ .portrait-wrap{top:8%;left:-30%;width:104%;height:79%}
+ .menu{left:36%;top:29%;width:61%;height:45%;gap:9px}
+ .menu-item{margin-left:calc(var(--shift)*.25);padding-right:4px}
+ .menu-label{font-size:clamp(19px,6.5vw,36px)}
+ .menu-item:nth-child(5),.menu-item:nth-child(7){--angle:-5deg!important}
+ .identity h1{font-size:clamp(25px,8vw,33px)}
+ .identity .eyebrow{font-size:9px}
+ .identity p{max-width:180px}
+}
+@media(max-width:600px){.menu-item:nth-child(odd):not(.is-selected) .menu-label{color:#f8fffd;-webkit-text-stroke:0;text-shadow:2px 2px 0 #00134a}}
