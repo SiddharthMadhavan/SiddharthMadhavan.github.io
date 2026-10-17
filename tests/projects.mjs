@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+const [main,classic] = await Promise.all(['index.html','classic.html'].map(p=>readFile(new URL('../'+p,import.meta.url),'utf8')));
+const section = s=>s.match(/<section class="section" id="projects">[\s\S]*?<\/section>/)[0];
+assert.equal(section(main),section(classic));
+assert.equal((section(main).match(/class="project-item"/g)||[]).length,12);
+for(const slug of ['vredefort','heatwatch','chip8-emulator','bits-and-bobs-deployment','weblogv3','finalproject1','unveil','fused-into-development']) assert(section(main).includes('https://github.com/SiddharthMadhavan/'+slug));
+assert(section(main).includes('not a validated fire alarm'));
+assert(section(main).includes('TatHack-Tathva'));
+assert(section(main).includes('Team-built'));
+console.log('PASS: twelve matching projects, verified repository links, prototype and collaboration attribution.');
