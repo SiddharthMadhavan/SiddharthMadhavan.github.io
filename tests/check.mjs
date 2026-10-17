@@ -14,7 +14,7 @@ const current = anchors(html);
 for (const link of anchors(classic)) assert(current.has(link), `Original link lost: ${link}`);
 for (const match of html.matchAll(/\b(?:src|href)="([^"#:]+)"/g)) {
   const path = match[1];
-  if (!/^[a-z]+:/i.test(path)) await access(new URL(path, root));
+  if (!/^[a-z]+:/i.test(path)) await access(new URL(path.split('?')[0], root));
 }
 assert(html.includes('<html lang="en">'), 'Language must be declared');
 assert(html.includes('<noscript>'), 'No-JavaScript fallback must exist');

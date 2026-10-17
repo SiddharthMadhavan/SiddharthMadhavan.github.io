@@ -18,3 +18,4 @@
  .identity p{max-width:180px}
 }
 @media(max-width:600px){.menu-item:nth-child(odd):not(.is-selected) .menu-label{color:#f8fffd;-webkit-text-stroke:0;text-shadow:2px 2px 0 #00134a}}
+@media(max-width:600px){.section h2{font-size:clamp(25px,8vw,38px);overflow-wrap:anywhere}}
