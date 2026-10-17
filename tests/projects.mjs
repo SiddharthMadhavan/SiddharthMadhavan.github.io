@@ -8,6 +8,10 @@ for(const slug of ['vredefort','heatwatch','chip8-emulator','bits-and-bobs-deplo
 assert(section(main).includes('not a validated fire alarm'));
 assert(section(main).includes('TatHack-Tathva'));
 assert(section(main).includes('Team-built'));
-assert(section(main).includes('Shortlisted · Tathack Finals'));
+assert(section(main).includes('Top 27 of ~250 · Tathack Finals'));
 assert(section(main).includes('SIH · Results Awaited'));
 console.log('PASS: twelve matching projects, verified repository links, prototype and collaboration attribution.');
+for(const content of [main,classic]) {
+ assert(content.includes('approximately 10,000 applicants'));
+ assert(content.includes('approximately 250 teams'));
+}

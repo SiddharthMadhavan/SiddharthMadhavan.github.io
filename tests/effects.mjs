@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import vm from 'node:vm';
+const source=await readFile(new URL('../effects.js',import.meta.url),'utf8');
+const events={},music={muted:false};
+const sounds=Object.fromEntries(['hover','select','close'].map(n=>[n,{paused:true,plays:0,currentTime:4,pause(){this.paused=true;},async play(){this.paused=false;this.plays++;}}]));
+vm.runInNewContext(source,{document:{querySelector:s=>s==='#background-music'?music:sounds[s.replace('#sound-','')],addEventListener:(k,v)=>events[k]=v}});
+events['portfolio:sound']({detail:'hover'});assert.equal(sounds.hover.plays,0);
+events.pointerdown({isTrusted:true});events['portfolio:sound']({detail:'hover'});assert.equal(sounds.hover.plays,1);assert.equal(sounds.hover.currentTime,0);
+events['portfolio:sound']({detail:'select'});assert(sounds.hover.paused);assert.equal(sounds.select.plays,1);
+music.muted=true;events.click({target:{closest:()=>true}});assert(sounds.select.paused);events['portfolio:sound']({detail:'close'});assert.equal(sounds.close.plays,0);
+music.muted=false;sounds.close.play=async()=>{throw Error('blocked')};events['portfolio:sound']({detail:'close'});await new Promise(r=>setImmediate(r));
+console.log('PASS: gesture-gated effects, no overlap, restart, global mute, handled rejection.');
