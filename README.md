@@ -18,7 +18,7 @@ Serve this directory with any static HTTP server, for example `python3 -m http.s
 
 Content was updated from the owner-supplied resume in October 2026, with existing project links and previously public contact details retained. The text-first `classic.html` view contains the same updated professional content. Obsolete planning and awaiting-results labels were removed; GPA values not reconfirmed in the newer resume were omitted. LinkedIn access was unavailable during this update, so no facts are claimed to have been extracted from the live profile.
 
-The portrait is generated from the owner's supplied photo, delivered as a compressed transparent WebP. The water effects, favicon, and interface code are original. The reference repository has no declared license; its source, video, fonts, music, and game assets were not copied. This is an independent fan-inspired portfolio, not an official ATLUS/SEGA product.
+The portrait is generated from the owner's supplied photo, delivered as a compressed transparent WebP. The water effects, favicon, and interface code are original. The reference repository has no declared license; its source, video, fonts, and game assets were not copied. Background music (`assets/color-your-night.mp3`, Color Your Night) was subsequently supplied by the owner for inclusion on this site; it is not an original or open-licensed asset. This is an independent fan-inspired portfolio, not an official ATLUS/SEGA product.
 
 ## Files
 
@@ -30,4 +30,8 @@ The portrait is generated from the owner's supplied photo, delivered as a compre
 
 ## Checks
 
-`node --check app.js` validates JavaScript syntax. `node tests/check.mjs` verifies local assets, all eight menu destinations, unique IDs, preservation of the original links, and accessibility hooks. No runtime dependencies or build pipeline are required. Review mobile layout and menu behavior before merging a design change.
+`node --check app.js` and `node --check music.js` validate JavaScript syntax. `node tests/music.mjs` checks playback state, synchronized controls, stored mute preference, and handled autoplay rejection. `node tests/check.mjs` verifies local assets, all eight menu destinations, unique IDs, preservation of the original links, and accessibility hooks. No runtime dependencies or build pipeline are required. Review mobile layout and menu behavior before merging a design change.
+
+## Music
+
+Color Your Night starts after the first user interaction, subject to browser playback rules. The persistent Play/Mute/Unmute button is available on both the menu and every detail panel. Muting pauses playback and is remembered locally. Blocked playback leaves a Play button; no autoplay rejection is unhandled. The MP3 uses preload=none so visitors who keep music muted do not download it automatically.

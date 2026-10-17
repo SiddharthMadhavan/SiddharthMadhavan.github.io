@@ -19,3 +19,9 @@
 }
 @media(max-width:600px){.menu-item:nth-child(odd):not(.is-selected) .menu-label{color:#f8fffd;-webkit-text-stroke:0;text-shadow:2px 2px 0 #00134a}}
 @media(max-width:600px){.section h2{font-size:clamp(25px,8vw,38px);overflow-wrap:anywhere}}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.music-toggle{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:36px;padding:8px 12px;border:1px solid #9afaff;background:#00134de8;color:#f8fffd;font-size:10px;font-weight:800;letter-spacing:.07em;cursor:pointer;white-space:nowrap}
+.stage>.music-toggle{position:absolute;top:4%;right:3%;z-index:6}
+.music-toggle:hover{background:#064995}.music-toggle[aria-pressed=true]{color:#96bdcf}
+.detail-actions{display:flex;align-items:center;gap:12px}.detail-top .music-toggle{border:1px solid #002361;padding:7px 9px;font-size:9px;min-height:32px}.detail-top .music-toggle span{font-size:inherit}
+@media(max-width:600px){.identity{width:68%}.stage>.music-toggle{right:4%;padding:7px;font-size:8px;gap:4px;min-height:34px}.detail-top{padding:0 12px;font-size:9px;letter-spacing:.05em}.detail-actions{gap:6px}.detail-top #close-panel{gap:5px;padding:4px}.detail-top .music-toggle{padding:6px;font-size:8px}}
