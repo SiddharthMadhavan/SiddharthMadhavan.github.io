@@ -1,0 +1,33 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+import vm from 'node:vm';
+const source = await readFile(new URL('../music.js', import.meta.url), 'utf8');
+function setup(saved = {}, reject = false) {
+  const events = {};
+  const audioEvents = {};
+  const status = { textContent: '' };
+  const buttons = [0, 1].map(() => ({ label: {}, attrs: {}, handlers: {}, querySelector() { return this.label; }, setAttribute(k, v) { this.attrs[k] = v; }, addEventListener(k, v) { this.handlers[k] = v; } }));
+  const audio = { paused: true, muted: false, plays: 0, pause() { this.paused = true; audioEvents.pause?.(); }, async play() { this.plays++; if (reject) throw Object.assign(new Error('blocked'), { name: 'NotAllowedError' }); this.paused = false; audioEvents.play?.(); }, addEventListener(k, v) { audioEvents[k] = v; } };
+  const document = { querySelector: s => s === '#background-music' ? audio : status, querySelectorAll: () => buttons, addEventListener: (k, v) => { events[k] = v; } };
+  vm.runInNewContext(source, { document, localStorage: { getItem: k => saved[k], setItem: (k, v) => { saved[k] = v; } } });
+  return { audio, buttons, events, status };
+}
+const tick = () => new Promise(resolve => setImmediate(resolve));
+const interaction = { isTrusted: true, target: { closest: () => null } };
+const saved = {};
+let ui = setup(saved);
+assert(ui.audio.paused); assert.equal(ui.audio.plays, 0);
+ui.events.pointerdown(interaction); await tick();
+assert.equal(ui.audio.paused, false); assert.equal(ui.audio.plays, 1);
+ui.events.keydown(interaction); await tick(); assert.equal(ui.audio.plays, 1);
+ui.buttons[1].handlers.click(); assert(ui.audio.muted && ui.audio.paused);
+assert.equal(saved['portfolio-music-muted'], 'true');
+assert(ui.buttons.every(b => b.label.textContent === 'UNMUTE'));
+ui = setup(saved); ui.events.pointerdown(interaction); await tick();
+assert(ui.audio.paused); assert.equal(ui.audio.plays, 0);
+ui.buttons[0].handlers.click(); await tick(); assert(!ui.audio.paused && !ui.audio.muted);
+assert.equal(saved['portfolio-music-muted'], 'false');
+const blocked = setup({}, true); blocked.events.pointerdown(interaction); await tick();
+assert(blocked.audio.paused); assert(blocked.status.textContent.includes('Select Play'));
+assert(blocked.buttons.every(b => b.label.textContent === 'PLAY'));
+console.log('PASS: no initial autoplay, first interaction, one audio playback, both mute controls, stored preference, unmute, handled autoplay rejection.');
