@@ -66,3 +66,44 @@
 .menu .menu-item.is-selected .menu-label,.menu .menu-item:nth-child(2n).is-selected .menu-label,.menu .menu-item.is-selected:focus-visible .menu-label{color:#fff;text-shadow:2px 2px 0 #09104f,-1px -1px 0 #09104f}
 .command-rule span{background:#00134d;padding:2px 6px}
 .commands p{background:#00134de8;padding:7px 10px;clip-path:polygon(0 0,100% 0,97% 100%,0 100%)}
+/* One portrait travels from the opening close-up to its exact resting geometry. */
+.intro-ready .portrait-wrap{z-index:21;visibility:hidden}
+.intro-ready.intro-framed .portrait-wrap{visibility:visible}
+.face-intro{position:absolute;z-index:20}
+.intro-ready .face-intro{animation:seamless-reveal 3s ease both}
+.intro-art{background:linear-gradient(105deg,#fff 0 65%,#0737d0 65% 100%)}
+@keyframes seamless-reveal{0%,35%{opacity:1}92%,100%{opacity:0}}
+.intro-ready .menu,.intro-ready .commands,.intro-ready .identity,.intro-ready .identity-footer,.intro-ready .music-toggle{animation:menu-reveal 3s ease both}
+.intro-ready #skip-intro{position:fixed}
+.portrait-wrap{left:-4%;width:49%;top:-12%;height:118%}
+.menu{top:8%;height:73%;left:45%;width:52%;gap:3px}
+.menu-label{font-size:clamp(38px,5.05vw,82px)}
+.menu-item{margin-left:calc(var(--shift)*.65)}
+.commands{bottom:5%}
+.bubbles i:nth-child(6){left:12%;width:12px;height:12px;animation-delay:-3s;animation-duration:13s}
+.bubbles i:nth-child(7){left:27%;width:8px;height:8px;animation-delay:-9s;animation-duration:18s}
+.bubbles i:nth-child(8){left:45%;width:25px;height:25px;animation-delay:-5s;animation-duration:19s}
+.bubbles i:nth-child(9){left:60%;width:10px;height:10px;animation-delay:-11s;animation-duration:14s}
+.bubbles i:nth-child(10){left:76%;width:18px;height:18px;animation-delay:-7s;animation-duration:20s}
+.bubbles i:nth-child(11){left:88%;width:7px;height:7px;animation-delay:-2s;animation-duration:12s}
+.bubbles i:nth-child(12){left:95%;width:28px;height:28px;animation-delay:-13s;animation-duration:22s}
+@media(max-width:1000px) and (min-width:601px){.portrait-wrap{left:-8%;width:59%}.menu{left:44%;top:12%;height:65%}.menu-label{font-size:clamp(32px,5.5vw,56px)}}
+@media(max-width:600px){.portrait-wrap{top:8%;left:-8%;width:87%;height:76%}.menu{left:37%;top:29%;width:60%;height:41%;gap:6px;transform:rotate(-3deg)}.menu-label{font-size:clamp(19px,6.2vw,34px)}.menu-item{margin-left:calc(var(--shift)*.20)}.commands{bottom:7%}}
+.portrait{animation:portrait-idle 5.8s ease-in-out infinite}
+@keyframes portrait-idle{0%,100%{transform:rotate(180deg) translate(0,0)}50%{transform:rotate(180.25deg) translate(1px,2px)}}
+.intro-ready .portrait{animation:none}
+@media(prefers-reduced-motion:reduce){.portrait{animation:none!important}}
+@media(min-width:601px){.menu-label{font-size:clamp(30px,min(5.05vw,8svh),82px)}}
+@media(max-height:650px) and (min-width:601px){.stage{min-height:560px}.menu{top:4%;height:72%;gap:2px}.commands p{font-size:15px}.commands{bottom:5%}}
+.identity-footer{background:#00134de8;padding:6px 8px}
+@media(max-width:600px){.menu .menu-item:not(.is-selected) .menu-label{color:#fff;-webkit-text-stroke:2px #00134d;paint-order:stroke fill;text-shadow:1px 2px 0 #00134d}}
+@media(min-width:601px){.portrait-wrap{top:-9%;height:108%}}
+@media(max-height:650px) and (min-width:601px){.menu{top:6%;height:70%}.menu-label{font-size:clamp(30px,min(5.05vw,7.2svh),60px)}}
+.portrait-blink{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;transform:rotate(180deg);animation:portrait-idle 5.8s ease-in-out infinite}
+.portrait-blink image{opacity:0;animation:portrait-blink 5.8s linear infinite}
+@keyframes portrait-blink{0%,45%,50%,100%{opacity:0}46%,49%{opacity:1}}
+.intro-ready .portrait-blink{visibility:hidden;animation:none}
+.reduce-motion .portrait-blink image{opacity:0}
+@media(prefers-reduced-motion:reduce){.portrait-blink,.portrait-blink image{animation:none!important}.portrait-blink image{opacity:0}}
+@media(min-width:601px) and (max-width:700px){.menu{left:49%;width:48%}.identity{width:35%;padding-right:14px}.identity h1{font-size:24px}.identity p{font-size:8px}}
+@media(max-width:600px){.identity{padding:8px 14px 8px 10px}.identity h1{font-size:clamp(24px,7.4vw,29px);margin:8px 0}.identity p{font-size:7px;margin:8px 0}.identity .eyebrow{font-size:8px}}

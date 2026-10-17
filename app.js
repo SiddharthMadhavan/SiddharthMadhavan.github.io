@@ -10,7 +10,9 @@
   let openedFromMenu = false;
   let lastTrigger = null;
   const select = (index, focus = false) => {
+    const previous = selected;
     selected = (index + links.length) % links.length;
+    if (selected !== previous) document.dispatchEvent(new CustomEvent('portfolio:sound', {detail: 'hover'}));
     links.forEach((link, i) => {
       link.classList.toggle('is-selected', i === selected);
       if (i === selected) link.setAttribute('aria-current', 'true');
@@ -24,7 +26,7 @@
     const id = location.hash.slice(1);
     const target = sections.find(section => section.id === id);
     if (!target) {
-      if (dialog.open) dialog.close();
+      if (dialog.open) { document.dispatchEvent(new CustomEvent('portfolio:sound', {detail: 'close'})); dialog.close(); }
       return;
     }
     sections.forEach(section => { section.hidden = section !== target; });
@@ -37,6 +39,7 @@
   };
   const dismiss = () => {
     if (!dialog.open) return;
+    document.dispatchEvent(new CustomEvent('portfolio:sound', {detail: 'close'}));
     dialog.close();
     if (openedFromMenu) {
       openedFromMenu = false;
@@ -50,6 +53,7 @@
     link.addEventListener('pointerenter', () => { if (!dialog.open) select(index); });
     link.addEventListener('focus', () => select(index));
     link.addEventListener('click', () => {
+      document.dispatchEvent(new CustomEvent('portfolio:sound', {detail: 'select'}));
       openedFromMenu = !location.hash;
       lastTrigger = link;
       if (link.hash === location.hash) syncRoute();

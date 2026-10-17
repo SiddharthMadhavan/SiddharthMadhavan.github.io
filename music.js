@@ -13,7 +13,7 @@
   const render = () => {
     const playing = !audio.paused && !muted;
     const label = muted ? 'UNMUTE' : playing ? 'MUTE' : 'PLAY';
-    const action = muted ? 'Unmute background music' : playing ? 'Mute background music' : 'Play background music';
+    const action = muted ? 'Unmute all audio' : playing ? 'Mute all audio' : 'Play audio';
     buttons.forEach(button => {
       button.querySelector('[data-music-label]').textContent = label;
       button.setAttribute('aria-label', action);
@@ -40,7 +40,7 @@
       muted = false; audio.muted = false; save(); render(); void play();
     } else if (!audio.paused || pending) {
       muted = true; audio.muted = true; ++attempt; pending = false; audio.pause(); save(); render();
-      status.textContent = 'Background music muted.';
+      status.textContent = 'All audio muted.';
     } else {
       muted = false; audio.muted = false; save(); void play();
     }
