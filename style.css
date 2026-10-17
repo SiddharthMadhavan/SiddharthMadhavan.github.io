@@ -45,3 +45,9 @@
 @keyframes face-pullback{0%,20%{top:-60vh;transform:translateX(-50%) rotate(180deg) scale(1.24)}72%,100%{top:-42vh;transform:translateX(-63%) rotate(180deg) scale(.72)}}
 @media(max-width:600px){.intro-art img{top:-45svh;animation-name:face-pullback-mobile}}
 @keyframes face-pullback-mobile{0%,20%{top:-45svh;transform:translateX(-50%) rotate(180deg) scale(1.24)}72%,100%{top:-28svh;transform:translateX(-56%) rotate(180deg) scale(.72)}}
+@media(max-width:600px){
+ .portrait-wrap{left:-15%}
+ .identity h1{margin:10px 0}.identity p{margin:10px 0}
+ .menu{transform:translateY(8px) rotate(-3deg)}
+ .menu-item:not(.is-selected) .menu-label{text-shadow:2px 2px 0 #001349,-1px -1px 0 #001349,1px -1px 0 #001349,-1px 1px 0 #001349}
+}
